@@ -10,17 +10,19 @@ public class CRUD {
     public static void main(String[] args) throws SQLException {
 
         try{
+        	
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc1", "root", "root");
         }
         catch (SQLException e){
             e.printStackTrace();
-        }
+            return;
+        } 
 
         System.out.print("Choose Option 1.Insert Data 2.Read Data 3.ReadAllEmp 4.Update Data 5.Delete Data");
         int opt = Integer.parseInt(sc.nextLine());
         System.out.println(opt);
-        //String yn;  //yes or no for continue
-        //do{
+        String yn;  //yes or no for continue
+        do{
             switch (opt) {
                 case 1:
                     obj.insertData();
@@ -38,13 +40,12 @@ public class CRUD {
                     obj.deleteData();
                     break;
                 default:
-                    obj.chooseOption();
+                    System.out.println("Invalid Option");
             }
-            //System.out.println("Do You want to continue press(y or Y) for Yes & press(n or N) for No");
-            //yn= sc.next();
-        //}
-        //while(yn.equals("y") || (yn.equals("Y")));
-
+            System.out.println("Do You want to continue press(y or Y) for Yes & press(n or N) for No");
+            yn= sc.nextLine().trim();
+        }
+        while(yn.equals("y") || (yn.equals("Y")));
     }
 
     public void insertData() {
