@@ -5,16 +5,17 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class    CRUD {
-
+    static Connection con;
     static Scanner sc = new Scanner(System.in);
     static CRUD obj = new CRUD();
-    static Connection con;
+
     public static void main(String[] args) {
 
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc1", "root", "root");
         } catch (SQLException e) {
             e.printStackTrace();
+            return;
         }
 
         System.out.println("Choose Option: 1.Insert Data, 2.Read Data, 3.ReadAll Data, 4.Update Data, 5. Delete Data");
@@ -41,7 +42,7 @@ public class    CRUD {
 
     public void insertData(){
         try {
-            String sql_st = "insert into employee values(?,?,?);";
+            String sql_st = "insert into product values(?,?,?);";
             PreparedStatement st =con.prepareStatement(sql_st);
             System.out.println("Enter Product Id: ");
             st.setInt(1,Integer.parseInt(sc.nextLine()));
@@ -76,6 +77,5 @@ public class    CRUD {
     }
 
     public void chooseOption(){
-
     }
 }
